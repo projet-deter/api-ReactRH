@@ -1,4 +1,8 @@
 # Register api
+authentication_token:
+    path: /authentication_token
+    methods: ['POST']
+
 register:
     path: /register
     controller: App\Controller\AuthController::register
@@ -11,7 +15,7 @@ api:
 login_check:
     path:     /login_check
     methods:  [POST]
-    
+
 swagger_ui:
     path: /docs
     controller: api_platform.swagger.action.ui

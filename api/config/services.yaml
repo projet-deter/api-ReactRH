@@ -28,7 +28,12 @@ services:
       class: ../src/Repository/UserRepository
       arguments:
           - Doctrine\Persistence\ManagerRegistry
-  
+
+    App\Swagger\SwaggerDecorator:
+      decorates: 'api_platform.swagger.normalizer.documentation'
+      arguments: ['@App\Swagger\SwaggerDecorator.inner']
+      autoconfigure: false
+
     # Controllers
     app.auth.controller:
       class: ../src/Controller/AuthController

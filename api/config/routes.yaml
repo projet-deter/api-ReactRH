@@ -1,4 +1,8 @@
 # Register api
+authentication_token:
+    path: /authentication_token
+    methods: ['POST']
+
 register:
     path: /register
     controller: App\Controller\AuthController::register

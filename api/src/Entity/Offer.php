@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\OfferRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 
 /**
- * @ApiResource()
+ * @ApiResource
  * @ORM\Entity(repositoryClass=OfferRepository::class)
  */
 class Offer
@@ -48,6 +51,16 @@ class Offer
      * @ORM\Column(type="string", length=255)
      */
     private $workplace;
+
+    /*
+     * @ORM\OneToMany(targetEntity=Application::class, mappedBy="offer")
+
+    private $applications;
+*/
+    public function __construct()
+    {
+       // $this->applications = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -125,4 +138,35 @@ class Offer
 
         return $this;
     }
+
+    /*
+     * @return Collection|Application[]
+
+    public function getApplications(): Collection
+    {
+        return $this->applications;
+    }
+
+    public function addApplication(Application $application): self
+    {
+        if (!$this->applications->contains($application)) {
+            $this->applications[] = $application;
+            $application->setOffer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeApplication(Application $application): self
+    {
+        if ($this->applications->contains($application)) {
+            $this->applications->removeElement($application);
+            // set the owning side to null (unless already changed)
+            if ($application->getOffer() === $this) {
+                $application->setOffer(null);
+            }
+        }
+
+        return $this;
+    }*/
 }
